@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>index</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="keywords" content="并读,新闻app,新闻,赚钱,阅薪" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="http://bingodu.oeeee.com/css/main.css" type="text/css">
+    <style>
+        .hd .news-info{line-height:20px;padding-top:5px;}
+        .hd .news-info2{display:none;padding:0 10px 5px 10px;margin-top:-5px;}
+        .news-info2 span{padding-right:3px;}
+        .praise::before,.comment::before,.origin::before{width:1px;height:1px;content:"・";text-indent:-9999em;margin-left:-5px;color:#999;}
+        .news-info2 .icon{display:inline-block;width:12px;height:12px;margin-right:3px;background:url("image/icon_info.png") 0 0 no-repeat;background-size:14px 36px;}
+        .news-info2 .icon-view{width:14px;background-position:0 -23px;}
+        .news-info2 .icon-praise{background-position:0 -11px;}
+        .news-info2 .icon-comment{background-position:0 2px;}
+        .news-info2 b{font-weight:400;}
+        .top-read{width:94%;margin:0 auto;display:none;}
+        .top-read .hd{padding-bottom:5px;}
+        .top-read .hd span{font-size:18px;line-height:20px;color:#e86414;font-weight:400;}
+        .hd .icon-line{float:left;width:4px;height:20px;margin-right:6px;border-radius:2px;background-color:#e86414;color:#e86414;}
+        .top-read-list,.top-read-list li{overflow:hidden;}
+        .top-read-list li{height:24px;}
+        .top-read-list li a{display:inline-block;width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;height:24px;line-height:24px;font-size:14px;color:#666;text-decoration:none;}
+    </style>
+</head>
+<body>
+<div class="news-containner">
+    <article class="news-cont" role="main">
+        <div class="download-banner" id="dl_banner" style="display: block;">
+            <div class="app">
+                <i class="app-icon"><img src="http://news.bingodu.com/css/app_icon.png" alt="并读新闻app"></i>
+                <p class="app-info"><span><em>并读新闻</em></span></p>
+            </div>
+            <div class="download">
+                <a href="javascript:void(0);" class="download-btn" target="_blank">下载Android版</a>
+                <a href="https://itunes.apple.com/app/id960145317" class="download-btn" target="_blank" style="display: block;">下载iPhone版</a>
+                <a href="http://m.bingodu.com/" class="download-btn" target="_blank">进入触屏版</a>
+            </div>
+        </div>
+        <header class="hd">
+            <h2 class="title">呆萌！巨型仙人掌遭小鸟挖洞筑巢</h2>
+            <p class="news-info">
+                <time>2015-05-19 14:14</time>
+                <span>环球网</span>
+            </p>
+            <p class="news-info2" id="J_news_info">
+                <span class="view l"><i class="icon icon-view"></i><b class="view-num" id="view_num"></b></span>
+                <span class="praise l"><i class="icon icon-praise"></i><b class="praise-num" id="praise_num"></b></span>
+                <span class="comment l"><i class="icon icon-comment"></i><b class="comment-num" id="comment_num"></b></span>
+            </p>
+        </header>
+        <section class="bd" id="J_cont">
+            <p align="center" style="width: auto;"><img source-src="http://news.xinhuanet.com/world/2015-05/19/10770007995606311755_11n.jpg" src="http://bdimg.oeeee.com/xh/2015/05/19/1953445/000001.jpg" data-url="http://image.bingodu.com/xh/2015/05/19/1953445/000001.jpg"></p>
+            <p align="justify" style="width: auto;">据英国《镜报》报道，在美国亚利桑那州的南部城市图森，一棵树形仙人掌，因有小鸟在其主茎上挖洞筑巢，看起来就像一张笑脸，而且其两旁的侧茎像是在向路人招手，整个造型十分友好可爱。</p>
+            <p align="justify" style="width: auto;">据悉，这是一种树形仙人掌，也是世界上最高的仙人掌，多产于墨西哥与美国加利福尼亚州。由于长在沙漠地区，许多鸟类也会为了生存在这种仙人掌上挖洞筑巢，于是就出现了这种可爱的仙人掌造型。</p>
+            <footer class="news-footer">
+                <p class="news-source fs-14">《本文来源于环球网》</p>
+                <p><a href="http://news.xinhuanet.com/world/2015-05/19/c_127818364.htm" class="view-original">查看原文</a></p>
+            </footer>
+        </section>
+        <div class="top-read" id="J_top_read">
+            <h3 class="hd"><span class="l"><i class="l icon-line"></i>并友热读</span>
+            </h3>
+            <div class="bd">
+                <ul class="top-read-list" id="J_list">
+                    <li><a href="#">热度新闻</a></li>
+                    <li><a href="#">热度新闻</a></li>
+                    <li><a href="#">热度新闻</a></li>
+                </ul>
+            </div>
+        </div>
+    </article>
+</div>
+<div class="page-bottom" id="page_bottom"></div>
+<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>

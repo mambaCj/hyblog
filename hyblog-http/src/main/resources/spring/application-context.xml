@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	 http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <!-- Root Context: defines shared resources visible to all other web components -->
+
+    <!--
+        CSRF protection. Here we only include the CsrfFilter instead of all of Spring Security.
+        See http://docs.spring.io/spring-security/site/docs/3.2.x/reference/htmlsingle/#csrf for more information on
+        Spring Security's CSRF protection
+    -->
+    <!--<bean id="csrfFilter" class="org.springframework.security.web.csrf.CsrfFilter">-->
+    <!--<constructor-arg>-->
+    <!--<bean class="org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository"/>-->
+    <!--</constructor-arg>-->
+    <!--</bean>-->
+    <!--
+        Provides automatic CSRF token inclusion when using Spring MVC Form tags or Thymeleaf. See
+        http://localhost:8080/#forms and form.jsp for examples
+    -->
+    <!--<bean id="requestDataValueProcessor" class="org.springframework.security.web.servlet.support.csrf.CsrfRequestDataValueProcessor"/>-->
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="defaultEncoding" value="utf-8"/>
+        <property name="basenames">
+            <list>
+                <value>config.messages</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean class="org.springframework.validation.beanvalidation.BeanValidationPostProcessor"/>
+    <bean class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor"/>
+    <!--<import resource="application-context-repository2.xml"/>-->
+    <import resource="classpath*:application-context-repository.xml"/>
+    <import resource="classpath*:application-context-service.xml"/>
+    <import resource="classpath*:api-scheduler-context.xml"/>
+    <!--import resource="classpath*:redis/redis-context.xml"/-->
+    <import resource="classpath*:application-rabbit.xml"/>
+    <import resource="classpath*:application-queue.xml"/>
+    <import resource="classpath*:spring-config-mongodb.xml"/>
+    <!--bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property
+                name="targetObject">
+            <bean
+                    class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+                <property name="targetClass" value="java.lang.System"/>
+                <property name="targetMethod" value="getProperties"/>
+            </bean>
+        </property>
+        <property
+                name="targetMethod"
+                value="putAll"/>
+        <property
+                name="arguments">
+            <util:properties>
+                <prop key="java.awt.headless">true</prop>
+            </util:properties>
+        </property>
+    </bean-->
+
+</beans>

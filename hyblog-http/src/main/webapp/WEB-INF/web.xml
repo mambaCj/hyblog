@@ -1,0 +1,144 @@
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+
+    <!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:spring/application-context.xml</param-value>
+    </context-param>
+
+    <!-- Creates the Spring Container shared by all Servlets and Filters -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <listener>
+        <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+    </listener>
+
+    <!-- 中文编码 -->
+    <filter>
+        <filter-name>characterEncodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>characterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!-- 密文解码过滤器 -->
+    <filter>
+        <filter-name>decodeFilter</filter-name>
+        <filter-class>com.smartnews.web.http.auth.decodefilter.DecodeFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>decodeFilter</filter-name>
+        <url-pattern>/api/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+
+    <!-- 守门人，专注杂七杂八逻辑前的拦截操作处理 -->
+    <filter>
+        <filter-name>gatekeeperFilter</filter-name>
+        <filter-class>com.smartnews.web.http.auth.GatekeeperFilter.GatekeeperFilter</filter-class>
+        <init-param>
+            <param-name>accessRule</param-name>
+            <!--json格式配制， 拦截的{url: {time : "时间段内允许次数", interval: "间隔时间(秒)"}}
+             "/api/news/praise" : {"time": 1, "interval" : 60}-->
+            <!--"/api/point/pointinfo" : {"time": 1, "interval" : 60}-->
+            <param-value>
+                <![CDATA[
+                      {
+                       "/api/user/friendaction" : {"time": 60, "interval" : 60},
+                       "/api/comment/cmtNews" : {"time": 3, "interval" : 60},
+                       "/api/news/getNews" : {"time": 1, "interval" : 2},
+                      }
+                ]]>
+            </param-value>
+        </init-param>
+        <init-param>
+            <param-name>phoneModel</param-name>
+            <!-- 当有多个机型时请用","逗号隔开 -->
+            <param-value>Droid4X-WIN,TianTian</param-value>
+         </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>gatekeeperFilter</filter-name>
+        <url-pattern>/api/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+
+    <!--<filter>-->
+    <!--<filter-name>csrfFilter</filter-name>-->
+    <!--<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>-->
+    <!--<async-supported>true</async-supported>-->
+    <!--</filter>-->
+    <!--<filter-mapping>-->
+    <!--<filter-name>csrfFilter</filter-name>-->
+    <!--<url-pattern>/*</url-pattern>-->
+    <!--</filter-mapping>-->
+
+
+    <!-- Processes application requests -->
+    <servlet>
+        <servlet-name>appServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextClass</param-name>
+            <param-value>
+                org.springframework.web.context.support.AnnotationConfigWebApplicationContext
+            </param-value>
+        </init-param>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>com.bingodu.web.http.WebMvcConfiguration</param-value>
+            <!--<param-value>classpath:mvc/servlet-context.xml</param-value>-->
+
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+        <async-supported>true</async-supported>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>appServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DruidStatView</servlet-name>
+        <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DruidStatView</servlet-name>
+        <url-pattern>/druid/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- Disables Servlet Container welcome file handling. Needed for compatibility with Servlet 3.0 and Tomcat 7.0 -->
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+    <session-config>
+        <session-timeout>60</session-timeout>
+    </session-config>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/errors/404.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/errors/500.jsp</location>
+    </error-page>
+</web-app>
