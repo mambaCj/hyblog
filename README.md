@@ -1,2 +1,1 @@
-# hyblog
-mamba &amp; totoro 's blog
+it's our blog project...getting started at 11/4/2016
