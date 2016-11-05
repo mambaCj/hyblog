@@ -9,14 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>hyblog-http</artifactId>
-    <packaging>war</packaging>
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-            <version>${org.springframework-version}</version>
-        </dependency>
-    </dependencies>
+    <artifactId>hyblog-service</artifactId>
+
 
 </project>

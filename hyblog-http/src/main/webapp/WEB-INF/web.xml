@@ -37,7 +37,7 @@
     </filter-mapping>
 
     <!-- 密文解码过滤器 -->
-    <filter>
+    <!--<filter>
         <filter-name>decodeFilter</filter-name>
         <filter-class>com.smartnews.web.http.auth.decodefilter.DecodeFilter</filter-class>
     </filter>
@@ -48,15 +48,15 @@
         <dispatcher>FORWARD</dispatcher>
     </filter-mapping>
 
-    <!-- 守门人，专注杂七杂八逻辑前的拦截操作处理 -->
+    &lt;!&ndash; 守门人，专注杂七杂八逻辑前的拦截操作处理 &ndash;&gt;
     <filter>
         <filter-name>gatekeeperFilter</filter-name>
         <filter-class>com.smartnews.web.http.auth.GatekeeperFilter.GatekeeperFilter</filter-class>
         <init-param>
             <param-name>accessRule</param-name>
-            <!--json格式配制， 拦截的{url: {time : "时间段内允许次数", interval: "间隔时间(秒)"}}
-             "/api/news/praise" : {"time": 1, "interval" : 60}-->
-            <!--"/api/point/pointinfo" : {"time": 1, "interval" : 60}-->
+            &lt;!&ndash;json格式配制， 拦截的{url: {time : "时间段内允许次数", interval: "间隔时间(秒)"}}
+             "/api/news/praise" : {"time": 1, "interval" : 60}&ndash;&gt;
+            &lt;!&ndash;"/api/point/pointinfo" : {"time": 1, "interval" : 60}&ndash;&gt;
             <param-value>
                 <![CDATA[
                       {
@@ -69,7 +69,7 @@
         </init-param>
         <init-param>
             <param-name>phoneModel</param-name>
-            <!-- 当有多个机型时请用","逗号隔开 -->
+            &lt;!&ndash; 当有多个机型时请用","逗号隔开 &ndash;&gt;
             <param-value>Droid4X-WIN,TianTian</param-value>
          </init-param>
     </filter>
@@ -78,18 +78,7 @@
         <url-pattern>/api/*</url-pattern>
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
-    </filter-mapping>
-
-    <!--<filter>-->
-    <!--<filter-name>csrfFilter</filter-name>-->
-    <!--<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>-->
-    <!--<async-supported>true</async-supported>-->
-    <!--</filter>-->
-    <!--<filter-mapping>-->
-    <!--<filter-name>csrfFilter</filter-name>-->
-    <!--<url-pattern>/*</url-pattern>-->
-    <!--</filter-mapping>-->
-
+    </filter-mapping>-->
 
     <!-- Processes application requests -->
     <servlet>
@@ -116,14 +105,14 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-    <servlet>
+    <!--<servlet>
         <servlet-name>DruidStatView</servlet-name>
         <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>DruidStatView</servlet-name>
         <url-pattern>/druid/*</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>-->
 
     <!-- Disables Servlet Container welcome file handling. Needed for compatibility with Servlet 3.0 and Tomcat 7.0 -->
     <welcome-file-list>
@@ -133,12 +122,12 @@
         <session-timeout>60</session-timeout>
     </session-config>
 
-    <error-page>
+    <!--<error-page>
         <error-code>404</error-code>
         <location>/errors/404.jsp</location>
     </error-page>
     <error-page>
         <error-code>500</error-code>
         <location>/errors/500.jsp</location>
-    </error-page>
+    </error-page>-->
 </web-app>
