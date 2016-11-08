@@ -16,6 +16,7 @@ public class HomePageController {
     @RequestMapping(value = "/index")
     public String welcomeHome(){
         LOGGER.info("============");
+System.out.println("55555555555555555555555");
         String test = "welcome...";
         return test;
     }
