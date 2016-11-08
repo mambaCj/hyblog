@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration  debug="false">
+
+    <appender name="ROLLING_ERROR" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="/data/logs/api/errors/api_error"/>
+        <!--<param name="MaxFileSize" value="50MB"/>-->
+        <!--<param name="MaxBackupIndex" value="9"/>-->
+        <param name="DatePattern" value="'_'yyyy-MM-dd'.log'"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %3t %3L %5p %c %x - %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="Daily_Rolling" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="/data/logs/api/api"/>
+        <param name="DatePattern" value="'_'yyyy-MM-dd'.log'"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %3t %3L %5p  %c %x - %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <!-- <param name="Threshold" value="info"/> -->
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{yyyy/MM/dd HH:mm:ss} %3t %3L %5p %c{1} %x - %m%n"/>
+        </layout>
+    </appender>
+
+
+    <appender name="ASYNC_ERROR" class="org.apache.log4j.AsyncAppender">
+        <param name="BufferSize" value="100000"/>
+        <param name="Blocking" value="false"/>
+        <param name="threshold" value="error"/>
+        <appender-ref ref="ROLLING_ERROR"/>
+        <!--<appender-ref ref="CONSOLE"/>-->
+    </appender>
+
+    <appender name="Async_Daily_Rolling" class="org.apache.log4j.AsyncAppender">
+        <param name="BufferSize" value="100000"/>
+        <param name="Blocking" value="false"/>
+        <appender-ref ref="Daily_Rolling"/>
+    </appender>
+
+    <!--<logger name="LoggerAspect">-->
+    <!--<level value="INFO"/>-->
+    <!--<appender-ref ref="Async_Daily_Rolling"/>-->
+    <!--</logger>-->
+
+    <!--<logger name="com.smartnews">-->
+    <!--<level value="INFO"/>-->
+    <!--<appender-ref ref="ASYNC_ERROR"/>-->
+    <!--</logger>-->
+
+    <!--<logger name="org.springframework.data.document.mongodb">-->
+    <!--<level value="=DEBUG"/>-->
+    <!--<appender-ref ref="CONSOLE"/>-->
+    <!--</logger>-->
+    <appender name="Business_Log" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="Encoding" value="UTF-8" />
+        <param name="File" value="/data/logs/api/business/access"/>
+        <param name="DatePattern" value="'-'yyyy-MM-dd'.log'"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %3t %5p %c %x ## %m%n"/>
+        </layout>
+    </appender>
+
+    <logger name="BusinessLog" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="Business_Log"/>
+        <appender-ref ref="Daily_Rolling"/>
+    </logger>
+
+    <logger name="org">
+        <level value="INFO"/>
+    </logger>
+
+    <logger name="com">
+        <level value="INFO"/>
+    </logger>
+
+    <!--<logger name="com.smartnews.repository">
+        <level value="DEBUG"/>
+    </logger>
+    <logger name="com.smartnews.service">
+        <level value="DEBUG"/>
+    </logger>
+    <logger name="com.smartnews.web">
+        <level value="DEBUG"/>
+    </logger>
+
+    <logger name="com.bingodu.repository">
+        <level value="DEBUG"/>
+    </logger>
+    <logger name="com.bingodu.service">
+        <level value="DEBUG"/>
+    </logger>
+    <logger name="com.bingodu.web">
+        <level value="DEBUG"/>
+    </logger>-->
+
+    <root>
+        <level value="DEBUG"/>
+        <appender-ref ref="Daily_Rolling" />
+        <appender-ref ref="ASYNC_ERROR"/>
+        <appender-ref ref="CONSOLE"/>
+    </root>
+</log4j:configuration>

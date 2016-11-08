@@ -1,5 +1,6 @@
 package com.mamba.web.http.home;
 
+import com.mamba.web.http.BaseController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,14 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping(value = "/api/home")
-public class HomePageController {
-    private final static Logger LOGGER = LoggerFactory.getLogger(HomePageController.class);
+public class HomePageController extends BaseController {
 
     @RequestMapping(value = "/index")
-    public String welcomeHome(){
-        LOGGER.info("============");
-System.out.println("55555555555555555555555");
-        String test = "welcome...";
-        return test;
+    public Object welcomeHome(){
+        logger.info("============");
+        return success();
     }
 }
