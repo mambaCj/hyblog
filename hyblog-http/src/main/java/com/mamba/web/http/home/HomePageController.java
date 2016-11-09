@@ -1,8 +1,9 @@
 package com.mamba.web.http.home;
 
+import com.mamba.service.home.HomePageService;
 import com.mamba.web.http.BaseController;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.mamba.web.http.Result;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,9 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/api/home")
 public class HomePageController extends BaseController {
 
+    @Autowired
+    private HomePageService homePageService;
+
     @RequestMapping(value = "/index")
-    public Object welcomeHome(){
+    public Result<?> welcomeHome() {
         logger.info("============");
+        float ff = 33/0;
         return success();
     }
 }

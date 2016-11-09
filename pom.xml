@@ -11,6 +11,7 @@
     <modules>
         <module>hyblog-http</module>
         <module>hyblog-service</module>
+        <module>hyblog-repository</module>
     </modules>
 
     <properties>
@@ -48,6 +49,26 @@
             <version>${org.springframework-version}</version>
         </dependency>
 
+        <!--<dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>1.1.0.RELEASE</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-context</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-tx</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-context-support</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        -->
         <!-- Logging -->
         <dependency>
             <groupId>org.slf4j</groupId>

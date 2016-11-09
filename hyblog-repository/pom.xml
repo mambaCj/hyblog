@@ -9,20 +9,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>hyblog-service</artifactId>
+    <artifactId>hyblog-repository</artifactId>
+    <name>hyblog-repository</name>
     <packaging>jar</packaging>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.mamba.totoro.hyblog</groupId>
-            <artifactId>hyblog-repository</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
-        </dependency>
 
-    </dependencies>
+
 </project>
