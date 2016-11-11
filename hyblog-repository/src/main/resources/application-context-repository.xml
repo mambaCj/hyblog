@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.0.xsd
+       ">
+
+    <context:component-scan base-package="com.mamba.repository"/>
+    <!--<aop:aspectj-autoproxy proxy-target-class="false" />-->
+
+    <bean id="druidDataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" lazy-init="true">
+        <property name="driverClassName" value="#{T(com.mamba.common.Environment).get('jdbc.driverClassName')}"/>
+        <property name="url" value="#{T(com.mamba.common.Environment).get('jdbc.url')}"/>
+        <property name="username" value="#{T(com.mamba.common.Environment).get('jdbc.username')}"/>
+        <property name="password" value="#{T(com.mamba.common.Environment).get('jdbc.password')}"/>
+        <property name="removeAbandoned" value="true" />
+        <property name="maxActive" value="100" />
+        <property name="initialSize" value="10" />
+        <property name="maxWait" value="2000" />
+        <property name="minIdle" value="5" />
+        <property name="timeBetweenEvictionRunsMillis" value="60000" />
+        <property name="minEvictableIdleTimeMillis" value="300000" />
+        <property name="testWhileIdle" value="true" />
+        <property name="testOnBorrow" value="false" />
+        <property name="testOnReturn" value="false" />
+        <property name="poolPreparedStatements" value="false" />
+        <property name="maxPoolPreparedStatementPerConnectionSize" value="-1" />
+        <property name="filters" value="stat" />
+        <property name="validationQuery" value="#{T(com.mamba.common.Environment).get('jdbc.validationQuery')}"/>
+    </bean>
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy">
+        <property name="targetDataSource" ref="druidDataSource"/>
+    </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
+        <property name="mapperLocations" value="classpath*:com/mamba/**/mapper/*.xml"/>
+        <property name="typeAliasesPackage" value="com.mamba.repository"/>
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <!--创建数据映射器，数据映射器必须为接口 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        <property name="annotationClass" value="org.springframework.stereotype.Repository" />
+        <property name="basePackage" value="com.mamba.repository"/>
+    </bean>
+
+    <!--<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    &lt;!&ndash; 配置哪些类哪些方法使用事务,false，标准的jdk动态代理实现，必须实现了接口的service才能被代理 &ndash;&gt;
+    <aop:config proxy-target-class="false">
+        &lt;!&ndash;  事物切入点,所有 @service 注解  &ndash;&gt;
+        <aop:advisor advice-ref="txadvice" pointcut="@within(org.springframework.stereotype.Service)"/>
+    </aop:config>
+
+    &lt;!&ndash; 事务的传播特性  &ndash;&gt;
+    <tx:advice id="txadvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            &lt;!&ndash;以add,del,modify开头的方法采用　required事务的传播特性  &ndash;&gt;
+            <tx:method name="add*" propagation="REQUIRED"/>
+            <tx:method name="del*" propagation="REQUIRED"/>
+            <tx:method name="modify*" propagation="REQUIRED"/>
+            <tx:method name="update*" propagation="REQUIRED"/>
+            <tx:method name="insert*" propagation="REQUIRED"/>
+            <tx:method name="remove*" propagation="REQUIRED"/>
+            <tx:method name="delete*" propagation="REQUIRED"/>
+            <tx:method name="save*" propagation="REQUIRED"/>
+            <tx:method name="compute*" propagation="REQUIRED"/>
+            <tx:method name="distribute*" propagation="REQUIRED"/>
+            &lt;!&ndash; 其它的方法  采用只读方式 &ndash;&gt;
+            <tx:method name="*" propagation="SUPPORTS" read-only="true"/>
+        </tx:attributes>
+    </tx:advice>
+    <tx:annotation-driven transaction-manager="transactionManager"/>-->
+</beans>

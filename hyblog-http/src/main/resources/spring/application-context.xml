@@ -13,4 +13,6 @@
         </property>
     </bean>
 
+    <import resource="classpath*:application-context-repository.xml"/>
+    <import resource="classpath*:application-context-service.xml"/>
 </beans>
