@@ -52,11 +52,12 @@
             <version>2.4.3</version>
         </dependency>
 
-        <dependency>
+        <!-- spring-tx -->
+        <!--<dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
             <version>${org.springframework-version}</version>
-        </dependency>
+        </dependency>-->
 
     </dependencies>
 
