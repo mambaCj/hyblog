@@ -1,11 +1,12 @@
-package com.mamba.repository.home.entity;
+package com.mamba.service.home.vo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by mamba on 2016/11/11.
  */
-public class BlogDetail{
+public class BlogDetailVO implements Serializable{
 
     private Integer id;
 
@@ -21,7 +22,7 @@ public class BlogDetail{
 
     private Integer readCount;
 
-    private Date publishTime;
+    private String publishTime;
 
     public Integer getId() {
         return id;
@@ -79,11 +80,11 @@ public class BlogDetail{
         this.readCount = readCount;
     }
 
-    public Date getPublishTime() {
+    public String getPublishTime() {
         return publishTime;
     }
 
-    public void setPublishTime(Date publishTime) {
+    public void setPublishTime(String publishTime) {
         this.publishTime = publishTime;
     }
 }
