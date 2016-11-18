@@ -12,4 +12,6 @@ import java.util.List;
 public interface BlogDetailMapper {
 
     List<BlogDetail> getBlogList();
+
+    void addReadCount(Integer id);
 }

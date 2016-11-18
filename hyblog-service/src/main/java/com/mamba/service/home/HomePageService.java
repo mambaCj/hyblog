@@ -40,4 +40,8 @@ public class HomePageService {
         }
         return Lists.newArrayList();
     }
+
+    public void addReadCount(Integer id) {
+        blogDetailMapper.addReadCount(id);
+    }
 }

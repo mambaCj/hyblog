@@ -6,6 +6,7 @@ import com.mamba.web.http.BaseController;
 import com.mamba.web.http.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -22,9 +23,15 @@ public class HomePageController extends BaseController {
 
     @RequestMapping(value = "/index")
     public Result<?> welcomeHome() {
-        logger.info("============");
         List<BlogDetailVO> result = homePageService.getBlogList();
-logger.info("============result.size={}",result.size());
+        logger.debug("============list.size={}",result.size());
         return success(result);
+    }
+
+    @RequestMapping(value = "/read")
+    public Result<?> readStatistic(@RequestParam Integer id){
+        logger.info("begin to add read count...blogId={}",id);
+        homePageService.addReadCount(id);
+        return success();
     }
 }
