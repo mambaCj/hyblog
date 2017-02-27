@@ -1,12 +1,15 @@
 package com.mamba.repository.message.entity;
 
+import com.alibaba.fastjson.annotation.JSONType;
+
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by mamba on 2017/2/23.
  */
 @JSONType(ignores={"createTime"})
-public class Message {
+public class Message implements Serializable {
     private Integer id;
 
     private Integer pid;

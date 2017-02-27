@@ -3,12 +3,13 @@ package com.mamba.service.message.vo;
 
 import com.mamba.repository.message.entity.Message;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by mamba on 2017/2/23.
  */
-public class MessageListVO {
+public class MessageListVO implements Serializable{
     private Integer id;
 
     private String content;

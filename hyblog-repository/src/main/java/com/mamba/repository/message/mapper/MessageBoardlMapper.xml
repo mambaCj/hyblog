@@ -6,12 +6,12 @@
     <!-- 查询所有 -->
     <select id="getFatherMessageList" resultType="com.mamba.repository.message.entity.Message">
         select id,pid,content,author,create_time as createTime from  mt_blog_message
-        where pid=0
+        where pid=0 order by create_time desc
     </select>
 
     <select id="getChildrenMessageList" resultType="com.mamba.repository.message.entity.Message">
         select id,pid,content,author,create_time as createTime from  mt_blog_message
-        where pid = #{pid,jdbcType=INTEGER}
+        where pid = #{pid,jdbcType=INTEGER} order by create_time
     </select>
 
 </mapper>
