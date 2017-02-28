@@ -1,14 +1,11 @@
 package com.mamba.repository.message.entity;
 
-import com.alibaba.fastjson.annotation.JSONType;
-
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * Created by mamba on 2017/2/23.
  */
-@JSONType(ignores={"createTime"})
 public class Message implements Serializable {
     private Integer id;
 
@@ -18,7 +15,7 @@ public class Message implements Serializable {
 
     private String author;
 
-    private Date createTime;
+    private LocalDateTime createTime;
 
     private String createTimeStr;
 
@@ -54,11 +51,11 @@ public class Message implements Serializable {
         this.author = author;
     }
 
-    public Date getCreateTime() {
+    public LocalDateTime getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 

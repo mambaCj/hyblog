@@ -12,6 +12,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -20,7 +21,7 @@ import java.util.List;
  */
 @Service
 public class HomePageService {
-
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     private static final Logger logger = LoggerFactory.getLogger(HomePageService.class);
 
     @Autowired
@@ -33,7 +34,7 @@ public class HomePageService {
             for(BlogDetail blogDetail : metaData){
                 final BlogDetailVO vo = new BlogDetailVO();
                 BeanUtils.copyProperties(blogDetail,vo);
-                vo.setPublishTime(DateFormatUtils.format(blogDetail.getPublishTime(), "yyyy-MM-dd HH:mm:ss"));
+                vo.setPublishTime(blogDetail.getPublishTime().format(DATE_TIME_FORMATTER));
                 result.add(vo);
             }
             return result;

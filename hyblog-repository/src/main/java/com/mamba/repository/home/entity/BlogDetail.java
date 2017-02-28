@@ -1,6 +1,6 @@
 package com.mamba.repository.home.entity;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * Created by mamba on 2016/11/11.
@@ -21,7 +21,7 @@ public class BlogDetail{
 
     private Integer readCount;
 
-    private Date publishTime;
+    private LocalDateTime publishTime;
 
     public Integer getId() {
         return id;
@@ -79,11 +79,11 @@ public class BlogDetail{
         this.readCount = readCount;
     }
 
-    public Date getPublishTime() {
+    public LocalDateTime getPublishTime() {
         return publishTime;
     }
 
-    public void setPublishTime(Date publishTime) {
+    public void setPublishTime(LocalDateTime publishTime) {
         this.publishTime = publishTime;
     }
 }
