@@ -14,4 +14,9 @@
         where pid = #{pid,jdbcType=INTEGER} order by create_time
     </select>
 
+    <insert id="addMessage">
+        insert into mt_blog_message(pid, content, author)
+        values (#{pid,jdbcType=INTEGER}, #{content}, #{author})
+    </insert>
+
 </mapper>

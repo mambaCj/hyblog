@@ -48,4 +48,8 @@ public class MessageBoardService {
         }
         return null;
     }
+
+    public void addOneMessage(String author,String content,Integer pid){
+        messageBoardMapper.addMessage(pid,content,author);
+    }
 }
