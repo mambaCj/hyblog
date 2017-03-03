@@ -15,5 +15,7 @@ public interface MessageBoardMapper {
 
     List<Message> getChildrenMessageList(Integer pid);
 
+    Integer countMessage();
+
     void addMessage(@Param("pid")Integer pid,@Param("content")String content, @Param("author")String author);
 }

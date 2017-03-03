@@ -27,6 +27,11 @@ public class MessageBoardController extends BaseController {
         return success(messageBoardService.getMessageList());
     }
 
+    @RequestMapping(value = "/count")
+    public Result<?> getMessageCount(){
+        return success(messageBoardService.countMessage());
+    }
+
     @RequestMapping(value = "/addOneMsg")
     public Result<?> addMessage(@Valid @Size(max = 80) @RequestParam(value = "author",required = false)String author,
                                 @Size(max = 400) @RequestParam(value = "content")String content,

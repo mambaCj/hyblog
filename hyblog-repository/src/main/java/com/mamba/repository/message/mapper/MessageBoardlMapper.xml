@@ -14,6 +14,10 @@
         where pid = #{pid,jdbcType=INTEGER} order by create_time
     </select>
 
+    <select id="countMessage" resultType="java.lang.Integer">
+        select count(*) from mt_blog_message
+    </select>
+
     <insert id="addMessage">
         insert into mt_blog_message(pid, content, author)
         values (#{pid,jdbcType=INTEGER}, #{content}, #{author})

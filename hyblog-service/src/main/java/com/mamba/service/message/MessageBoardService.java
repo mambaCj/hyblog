@@ -1,5 +1,8 @@
 package com.mamba.service.message;
 
+import com.google.common.cache.CacheBuilder;
+import com.google.common.cache.CacheLoader;
+import com.google.common.cache.LoadingCache;
 import com.google.common.collect.Lists;
 import com.mamba.repository.message.entity.Message;
 import com.mamba.repository.message.mapper.MessageBoardMapper;
@@ -15,6 +18,7 @@ import org.springframework.stereotype.Service;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by mamba on 2017/2/23.
@@ -23,6 +27,15 @@ import java.util.Optional;
 public class MessageBoardService {
     private static final Logger logger = LoggerFactory.getLogger(MessageBoardService.class);
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    private final LoadingCache<String,Integer> msgCountCache = CacheBuilder.newBuilder()
+                                                .maximumSize(10)
+                                                .expireAfterWrite(1, TimeUnit.MINUTES)
+                                                .build(new CacheLoader<String, Integer>() {
+                                                    @Override
+                                                    public Integer load(String key) throws Exception {
+                                                        return messageBoardMapper.countMessage();
+                                                    }
+                                                });
     @Autowired
     private MessageBoardMapper messageBoardMapper;
 
@@ -47,6 +60,11 @@ public class MessageBoardService {
             return result;
         }
         return null;
+    }
+
+    public Integer countMessage(){
+
+        return msgCountCache.getUnchecked("msgCount");
     }
 
     public void addOneMessage(String author,String content,Integer pid){
