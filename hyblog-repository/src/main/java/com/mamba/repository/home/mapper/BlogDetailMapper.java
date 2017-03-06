@@ -14,4 +14,6 @@ public interface BlogDetailMapper {
     List<BlogDetail> getBlogList();
 
     void addReadCount(Integer id);
+
+    List<BlogDetail> rankReading();
 }

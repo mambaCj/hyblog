@@ -13,4 +13,8 @@
         update mt_blog_detail set read_count = read_count + 1 where id = #{id,jdbcType=INTEGER}
     </update>
 
+    <select id="rankReading" resultType="com.mamba.repository.home.entity.BlogDetail">
+        select id,title,url from mt_blog_detail where status=0 order by read_count desc limit 0,3;
+    </select>
+
 </mapper>

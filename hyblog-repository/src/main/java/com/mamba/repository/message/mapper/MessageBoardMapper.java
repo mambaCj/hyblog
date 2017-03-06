@@ -18,4 +18,6 @@ public interface MessageBoardMapper {
     Integer countMessage();
 
     void addMessage(@Param("pid")Integer pid,@Param("content")String content, @Param("author")String author);
+
+    List<Message> getLatest();
 }

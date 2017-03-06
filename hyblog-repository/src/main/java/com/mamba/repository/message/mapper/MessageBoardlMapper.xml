@@ -23,4 +23,7 @@
         values (#{pid,jdbcType=INTEGER}, #{content}, #{author})
     </insert>
 
+    <select id="getLatest" resultType="com.mamba.repository.message.entity.Message">
+        select id,pid,content,author,create_time as createTime from mt_blog_message order by create_time desc limit 0,5;
+    </select>
 </mapper>

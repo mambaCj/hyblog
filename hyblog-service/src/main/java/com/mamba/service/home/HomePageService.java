@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import com.mamba.repository.home.entity.BlogDetail;
 import com.mamba.repository.home.mapper.BlogDetailMapper;
 import com.mamba.service.home.vo.BlogDetailVO;
+import com.mamba.service.home.vo.ReadRankingVO;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.slf4j.Logger;
@@ -44,5 +45,19 @@ public class HomePageService {
 
     public void addReadCount(Integer id) {
         blogDetailMapper.addReadCount(id);
+    }
+
+    public List<ReadRankingVO> rankReading() {
+        List<BlogDetail> metaData = blogDetailMapper.rankReading();
+        if(CollectionUtils.isNotEmpty(metaData)){
+            List<ReadRankingVO> result = Lists.newArrayListWithCapacity(metaData.size());
+            metaData.forEach(blogDetail -> {
+                ReadRankingVO vo = new ReadRankingVO();
+                BeanUtils.copyProperties(blogDetail,vo);
+                result.add(vo);
+            });
+            return result;
+        }
+        return Lists.newArrayList();
     }
 }

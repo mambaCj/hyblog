@@ -70,4 +70,18 @@ public class MessageBoardService {
     public void addOneMessage(String author,String content,Integer pid){
         messageBoardMapper.addMessage(pid,content,author);
     }
+
+    public List<MessageListVO> getLatestMessages() {
+        List<Message> metaData = messageBoardMapper.getLatest();
+        if(CollectionUtils.isNotEmpty(metaData)){
+            List<MessageListVO> result = Lists.newArrayListWithCapacity(metaData.size());
+            metaData.forEach(message -> {
+                MessageListVO vo = new MessageListVO();
+                BeanUtils.copyProperties(message,vo);
+                result.add(vo);
+            });
+            return result;
+        }
+        return null;
+    }
 }
