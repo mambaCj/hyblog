@@ -1,12 +1,14 @@
 package com.mamba.repository.message.entity;
 
-import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.time.LocalDateTime;
 
 /**
  * Created by mamba on 2017/2/23.
  */
-public class Message implements Serializable {
+@JsonIgnoreProperties(value = {"createTime"})
+public class Message {
     private Integer id;
 
     private Integer pid;

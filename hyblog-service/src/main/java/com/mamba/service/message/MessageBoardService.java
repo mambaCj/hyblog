@@ -8,7 +8,6 @@ import com.mamba.repository.message.entity.Message;
 import com.mamba.repository.message.mapper.MessageBoardMapper;
 import com.mamba.service.message.vo.MessageListVO;
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.time.DateFormatUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
