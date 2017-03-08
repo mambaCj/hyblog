@@ -6,7 +6,7 @@
     <!-- 查询所有 -->
     <select id="getBlogList" resultType="com.mamba.repository.home.entity.BlogDetail">
         select id,title,summary,publish_time publishTime,category_id categoryId,read_count readCount,url,status from  mt_blog_detail
-        where status=0
+        where status=0 order by publish_time desc
     </select>
 
     <update id="addReadCount" >
