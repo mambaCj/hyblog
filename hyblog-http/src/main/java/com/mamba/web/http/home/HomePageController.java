@@ -34,7 +34,7 @@ public class HomePageController extends BaseController {
 
     @RequestMapping(value = "/read")
     public Result<?> readStatistic(@RequestParam Integer id){
-        logger.info("begin to add read count...blogId={}",id);
+        logger.info("begin to add read count.....blogId={}",id);
         homePageService.addReadCount(id);
         return success();
     }
